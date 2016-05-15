@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using CnControls;
 
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
-
+    public bool AndroidInput = true;
 
     float timer;
     Ray shootRay;
@@ -33,10 +34,23 @@ public class PlayerShooting : MonoBehaviour
     {
         //Update every second
         timer += Time.deltaTime;
-        //Fire when player presses fire
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+        
+        if (!AndroidInput)
         {
-            Shoot ();
+            //use keyboard if android input is false
+            if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            {
+                Shoot ();
+            }
+        }
+        if (AndroidInput)
+        {
+            //use joystick if android input is true
+            if ((CnInputManager.GetAxis("HorizontalDirection") != 0 || CnInputManager.GetAxis("VerticalDirection") != 0) && timer >= timeBetweenBullets)
+            {
+                // ... shoot the gun
+                Shoot();
+            }
         }
 
         if(timer >= timeBetweenBullets * effectsDisplayTime)
