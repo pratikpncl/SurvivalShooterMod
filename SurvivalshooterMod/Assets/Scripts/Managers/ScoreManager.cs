@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     void Awake ()
     {
+        //Get text 
         text = GetComponent <Text> ();
         score = 0;
     }
@@ -19,6 +20,7 @@ public class ScoreManager : MonoBehaviour
 
     void Update ()
     {
+        //Update score
         text.text = "Score: " + score;
     }
 }
