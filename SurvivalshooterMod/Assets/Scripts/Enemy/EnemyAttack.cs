@@ -17,6 +17,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Awake ()
     {
+        //get player and enemy components
         player = GameObject.FindGameObjectWithTag ("Player");
         playerHealth = player.GetComponent <PlayerHealth> ();
         enemyHealth = GetComponent<EnemyHealth>();
@@ -26,6 +27,7 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerEnter (Collider other)
     {
+        //If player is in range then attack
         if(other.gameObject == player)
         {
             playerInRange = true;
@@ -35,6 +37,7 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
+        //If player is not in range then stop attacking
         if(other.gameObject == player)
         {
             playerInRange = false;
@@ -44,6 +47,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update ()
     {
+        //Update every second
         timer += Time.deltaTime;
 
         if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)

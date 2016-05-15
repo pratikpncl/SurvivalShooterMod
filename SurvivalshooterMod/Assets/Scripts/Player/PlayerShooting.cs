@@ -20,6 +20,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake ()
     {
+        //Get components for shooting, particles, audio and collision
         shootableMask = LayerMask.GetMask ("Shootable");
         gunParticles = GetComponent<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
@@ -30,8 +31,9 @@ public class PlayerShooting : MonoBehaviour
 
     void Update ()
     {
+        //Update every second
         timer += Time.deltaTime;
-
+        //Fire when player presses fire
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
@@ -46,6 +48,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void DisableEffects ()
     {
+        //disable effects if you let go of fire key
         gunLine.enabled = false;
         gunLight.enabled = false;
     }
@@ -53,26 +56,29 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot ()
     {
+        //Set timer back to 0
         timer = 0f;
-
+        //play shoot audio
         gunAudio.Play ();
-
+        //enable gun light
         gunLight.enabled = true;
-
+        //Stop and play gun particles
         gunParticles.Stop ();
         gunParticles.Play ();
 
         gunLine.enabled = true;
         gunLine.SetPosition (0, transform.position);
-
+        //shooting mechanism
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
 
         if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
+            //check enemy for health
             EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
             if(enemyHealth != null)
             {
+                //If it has health then shoot
                 enemyHealth.TakeDamage (damagePerShot, shootHit.point);
             }
             gunLine.SetPosition (1, shootHit.point);

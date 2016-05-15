@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake ()
     {
+        //get components from player and enemy
         player = GameObject.FindGameObjectWithTag ("Player").transform;
         playerHealth = player.GetComponent <PlayerHealth> ();
         enemyHealth = GetComponent <EnemyHealth> ();
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update ()
     {
+        //If health is not 0 then follow player
         if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         {
             nav.SetDestination (player.position);

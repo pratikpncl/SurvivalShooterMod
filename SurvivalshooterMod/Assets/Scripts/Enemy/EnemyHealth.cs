@@ -19,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Awake ()
     {
+        //get components for animation, audio, particles and collision
         anim = GetComponent <Animator> ();
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
@@ -32,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(isSinking)
         {
+            //Slowly fade downwards after death
             transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
         }
     }
@@ -39,18 +41,20 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage (int amount, Vector3 hitPoint)
     {
+        //Don't take damage if dead
         if(isDead)
             return;
-
+        //Play audio on hit
         enemyAudio.Play ();
-
+        //reduce health
         currentHealth -= amount;
-            
+         //play hit particles  
         hitParticles.transform.position = hitPoint;
         hitParticles.Play();
 
         if(currentHealth <= 0)
         {
+            //Die if health is 0
             Death ();
         }
     }
@@ -58,10 +62,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Death ()
     {
+        //Set isDead to true
         isDead = true;
 
         capsuleCollider.isTrigger = true;
-
+        //play death animation
         anim.SetTrigger ("Dead");
 
         enemyAudio.clip = deathClip;
@@ -71,9 +76,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void StartSinking ()
     {
+        //reove navigation and rigidbody after death
         GetComponent <NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
+        //Increase score
         ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
     }

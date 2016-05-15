@@ -10,11 +10,13 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
+        //offset for camera
         offset = transform.position - target.position;
     }
 
     void FixedUpdate()
     {
+        //get position of player and follow it
         Vector3 targetCamPos = target.position + offset;
 
         transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);

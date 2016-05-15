@@ -10,19 +10,21 @@ public class EnemyManager : MonoBehaviour
 
     void Start ()
     {
+        //Spawn for specified time
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
 
 
     void Spawn ()
     {
+        //Don't spawn if health is 0
         if(playerHealth.currentHealth <= 0f)
         {
             return;
         }
 
         int spawnPointIndex = Random.Range (0, spawnPoints.Length);
-
+        //Determine enemy spawn point
         Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
     }
 }
