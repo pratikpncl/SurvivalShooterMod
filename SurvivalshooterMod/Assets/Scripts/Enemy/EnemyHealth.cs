@@ -16,6 +16,10 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+    //spawning
+    private GameObject objSpawn;
+    private int SpawnerID;
+
 
     void Awake ()
     {
@@ -26,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
         currentHealth = startingHealth;
+        objSpawn = (GameObject)GameObject.FindWithTag("Spawner");
     }
 
 
@@ -83,5 +88,16 @@ public class EnemyHealth : MonoBehaviour
         //Increase score
         ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
+    }
+
+    void removeMe()
+    {
+        objSpawn.BroadcastMessage("killEnemy", SpawnerID);
+        Destroy(gameObject);
+    }
+    // this gets called in the beginning when it is created by the spawner script
+    void setName(int sName)
+    {
+        SpawnerID = sName;
     }
 }
