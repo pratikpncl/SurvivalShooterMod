@@ -4,46 +4,17 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-    // Color of the gizmo
-    public Color gizmoColor = Color.red;
-
-    //-----------------------------------
-    // All the Enums
-    //-----------------------------------
-    // Spawn types
+    //----------------------------------
+    // Different Spawn types
+    //----------------------------------
     public enum SpawnTypes
     {
-        Normal,
-        Once,
         Wave,
         TimedWave
     }
-    // The different Enemy levels
-    public enum EnemyLevels
-    {
-        Easy,
-        Medium,
-        Hard,
-        Boss
-    }
-    //---------------------------------
-    // End of the Enums
-    //---------------------------------
 
-    // Enemy level to be spawnedEnemy
-    public EnemyLevels enemyLevel = EnemyLevels.Easy;
-
-    //----------------------------------
-    // Enemy Prefabs
-    //----------------------------------
-    public GameObject EasyEnemy;
-    public GameObject MediumEnemy;
-    public GameObject HardEnemy;
-    public GameObject BossEnemy;
-    private Dictionary<EnemyLevels, GameObject> Enemies = new Dictionary<EnemyLevels, GameObject>(4);
-    //----------------------------------
-    // End of Enemy Prefabs
-    //----------------------------------
+    //To load prefabs of enemies
+    public GameObject Enemy;
 
     //----------------------------------
     // Enemies and how many have been created and how many are to be created
@@ -64,7 +35,7 @@ public class Spawner : MonoBehaviour
     //----------------------------------
     private bool waveSpawn = false;
     public bool Spawn = true;
-    public SpawnTypes spawnType = SpawnTypes.Normal;
+    public SpawnTypes spawnType = SpawnTypes.TimedWave;
     // timed wave controls
     public float waveTimer = 30.0f;
     private float timeTillWave = 0.0f;
@@ -78,50 +49,14 @@ public class Spawner : MonoBehaviour
     {
         // sets a random number for the id of the spawner
         SpawnID = Random.Range(1, 500);
-        Enemies.Add(EnemyLevels.Easy, EasyEnemy);
-        Enemies.Add(EnemyLevels.Boss, BossEnemy);
-        Enemies.Add(EnemyLevels.Medium, MediumEnemy);
-        Enemies.Add(EnemyLevels.Hard, HardEnemy);
     }
-    // Draws a cube to show where the spawn point is... Useful if you don't have a object that show the spawn point
-    void OnDrawGizmos()
-    {
-        // Sets the color to red
-        Gizmos.color = gizmoColor;
-        //draws a small cube at the location of the gam object that the script is attached to
-        Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0.5f));
-    }
+ 
     void Update()
     {
         if (Spawn)
         {
-            // Spawns enemies everytime one dies
-            if (spawnType == SpawnTypes.Normal)
-            {
-                // checks to see if the number of spawned enemies is less than the max num of enemies
-                if (numEnemy < totalEnemy)
-                {
-                    // spawns an enemy
-                    spawnEnemy();
-                }
-            }
-            // Spawns enemies only once
-            else if (spawnType == SpawnTypes.Once)
-            {
-                // checks to see if the overall spawned num of enemies is more or equal to the total to be spawned
-                if (spawnedEnemy >= totalEnemy)
-                {
-                    //sets the spawner to false
-                    Spawn = false;
-                }
-                else
-                {
-                    // spawns an enemy
-                    spawnEnemy();
-                }
-            }
             //spawns enemies in waves, so once all are dead, spawns more
-            else if (spawnType == SpawnTypes.Wave)
+            if (spawnType == SpawnTypes.Wave)
             {
                 if (numWaves < totalWaves + 1)
                 {
@@ -183,11 +118,10 @@ public class Spawner : MonoBehaviour
             }
         }
     }
-    // spawns an enemy based on the enemy level that you selected
+    // spawns an enemy
     private void spawnEnemy()
     {
-        GameObject Enemy = (GameObject)Instantiate(Enemies[enemyLevel], gameObject.transform.position, Quaternion.identity);
-        Enemy.SendMessage("setName", SpawnID);
+        Instantiate(Enemy, gameObject.transform.position, Quaternion.identity);
         // Increase the total number of enemies spawned and the number of spawned enemies
         numEnemy++;
         spawnedEnemy++;

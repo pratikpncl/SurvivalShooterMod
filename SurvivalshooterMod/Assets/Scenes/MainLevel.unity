@@ -136,7 +136,7 @@ GameObject:
   m_Layer: 0
   m_Name: Zombunny
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -163,17 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c1cea8f4c80144083c30e20c58e9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  enemyLevel: 0
-  EasyEnemy: {fileID: 107958, guid: 3c49c0e77ef910a498c5b93c86311a82, type: 2}
-  MediumEnemy: {fileID: 0}
-  HardEnemy: {fileID: 0}
-  BossEnemy: {fileID: 0}
-  totalEnemy: 2
+  Enemy: {fileID: 107958, guid: 3c49c0e77ef910a498c5b93c86311a82, type: 2}
+  totalEnemy: 0
   Spawn: 1
-  spawnType: 3
-  waveTimer: 45
-  totalWaves: 10
+  spawnType: 1
+  waveTimer: 30
+  totalWaves: 15
 --- !u!1 &242953350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1241,8 @@ Transform:
   - {fileID: 239041449}
   - {fileID: 894632876}
   - {fileID: 1723013388}
+  - {fileID: 1149263159}
+  - {fileID: 1349050637}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!1 &671512446
@@ -1694,7 +1691,7 @@ GameObject:
   m_Layer: 0
   m_Name: Zombear
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1721,17 +1718,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c1cea8f4c80144083c30e20c58e9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  enemyLevel: 1
-  EasyEnemy: {fileID: 0}
-  MediumEnemy: {fileID: 100000, guid: ffdde77c7de2ec246907b187471ed7d0, type: 2}
-  HardEnemy: {fileID: 0}
-  BossEnemy: {fileID: 0}
-  totalEnemy: 2
+  Enemy: {fileID: 100000, guid: ffdde77c7de2ec246907b187471ed7d0, type: 2}
+  totalEnemy: 0
   Spawn: 1
-  spawnType: 3
-  waveTimer: 45
-  totalWaves: 5
+  spawnType: 1
+  waveTimer: 30
+  totalWaves: 15
 --- !u!1 &907252635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2144,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 149d6dcc67e8d1240bbc0dd6ddf0c1bd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1149263158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1149263159}
+  - 114: {fileID: 1149263160}
+  m_Layer: 0
+  m_Name: Zombunny(2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1149263159
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1149263158}
+  m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261818}
+  m_LocalPosition: {x: -23.29, y: 0, z: -9.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 659881316}
+  m_RootOrder: 3
+--- !u!114 &1149263160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1149263158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c1cea8f4c80144083c30e20c58e9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 107958, guid: 3c49c0e77ef910a498c5b93c86311a82, type: 2}
+  totalEnemy: 0
+  Spawn: 1
+  spawnType: 1
+  waveTimer: 45
+  totalWaves: 15
 --- !u!1 &1165399252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2631,51 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1292698533}
+--- !u!1 &1349050636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1349050637}
+  - 114: {fileID: 1349050638}
+  m_Layer: 0
+  m_Name: Zombear(2)
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1349050637
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1349050636}
+  m_LocalRotation: {x: 0, y: 0.86602527, z: 0, w: -0.50000024}
+  m_LocalPosition: {x: 29.47, y: 0, z: 0.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 659881316}
+  m_RootOrder: 4
+--- !u!114 &1349050638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1349050636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c1cea8f4c80144083c30e20c58e9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 100000, guid: ffdde77c7de2ec246907b187471ed7d0, type: 2}
+  totalEnemy: 0
+  Spawn: 1
+  spawnType: 1
+  waveTimer: 55
+  totalWaves: 15
 --- !u!1001 &1353165746
 Prefab:
   m_ObjectHideFlags: 0
@@ -3332,7 +3414,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hellephant
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3359,17 +3441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c1cea8f4c80144083c30e20c58e9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  enemyLevel: 0
-  EasyEnemy: {fileID: 104722, guid: 2f8e5dcb17eda3542bf9cd4ef63425e3, type: 2}
-  MediumEnemy: {fileID: 0}
-  HardEnemy: {fileID: 104722, guid: 2f8e5dcb17eda3542bf9cd4ef63425e3, type: 2}
-  BossEnemy: {fileID: 0}
-  totalEnemy: 1
+  Enemy: {fileID: 104722, guid: 2f8e5dcb17eda3542bf9cd4ef63425e3, type: 2}
+  totalEnemy: 0
   Spawn: 1
-  spawnType: 3
+  spawnType: 1
   waveTimer: 60
-  totalWaves: 5
+  totalWaves: 15
 --- !u!1 &1744751414
 GameObject:
   m_ObjectHideFlags: 0
