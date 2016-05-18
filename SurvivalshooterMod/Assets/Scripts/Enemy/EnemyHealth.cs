@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public AudioClip deathClip;
 
-
     Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
@@ -30,7 +29,22 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
         currentHealth = startingHealth;
+    }
+
+    void Start()
+    {
         objSpawn = (GameObject)GameObject.FindWithTag("Spawner");
+    }
+    // Call this when you want to kill the enemy
+    void removeMe()
+    {
+        objSpawn.BroadcastMessage("killEnemy", SpawnerID);
+        Destroy(gameObject);
+    }
+    // this gets called in the beginning when it is created by the spawner script
+    void setName(int sName)
+    {
+        SpawnerID = sName;
     }
 
 
@@ -88,16 +102,5 @@ public class EnemyHealth : MonoBehaviour
         //Increase score
         ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
-    }
-
-    void removeMe()
-    {
-        objSpawn.BroadcastMessage("killEnemy", SpawnerID);
-        Destroy(gameObject);
-    }
-    // this gets called in the beginning when it is created by the spawner script
-    void setName(int sName)
-    {
-        SpawnerID = sName;
     }
 }

@@ -89,7 +89,7 @@ public class Spawner : MonoBehaviour
         // Sets the color to red
         Gizmos.color = gizmoColor;
         //draws a small cube at the location of the gam object that the script is attached to
-        Gizmos.DrawCube(transform.position, new Vector3(-20.5f, 0.0f, 12.5f));
+        Gizmos.DrawCube(transform.position, new Vector3(0.5f, 0.5f, 0.5f));
     }
     void Update()
     {
@@ -168,6 +168,7 @@ public class Spawner : MonoBehaviour
                         numWaves++;
                         // A hack to get it to spawn the same number of enemies regardless of how many have been killed
                         numEnemy = 0;
+                        totalEnemy += 1;
                     }
                     if (numEnemy >= totalEnemy)
                     {
