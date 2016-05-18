@@ -8,13 +8,16 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public AudioClip deathClip;
 
-
     Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
+
+    //spawning
+    private GameObject objSpawn;
+    private int SpawnerID;
 
 
     void Awake ()
@@ -27,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth = startingHealth;
     }
-
 
     void Update ()
     {
