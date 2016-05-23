@@ -53,8 +53,6 @@ public class Spawner : MonoBehaviour
  
     void Update()
     {
-        //TextManager.WaveNumber = numWaves;
-
         if (Spawn)
         {
             //spawns enemies in waves, so once all are dead, spawns more
@@ -105,14 +103,7 @@ public class Spawner : MonoBehaviour
                         numWaves++;
                         // A hack to get it to spawn the same number of enemies regardless of how many have been killed
                         numEnemy = 0;
-                      /*  if (numWaves >= 2)
-                        {
-                             totalEnemy = 3;
-                        }
-                        if (numWaves >= 3)
-                        {
-                            totalEnemy = 5;
-                        }*/
+                        totalEnemy += 1;
                     }
                     if (numEnemy >= totalEnemy)
                     {
