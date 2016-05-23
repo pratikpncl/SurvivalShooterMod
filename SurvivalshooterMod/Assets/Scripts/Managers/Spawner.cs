@@ -22,6 +22,7 @@ public class Spawner : MonoBehaviour
     public int totalEnemy = 10;
     private int numEnemy = 0;
     private int spawnedEnemy = 0;
+    public bool increaseonce = false;
     //----------------------------------
     // End of Enemy Settings
     //----------------------------------
@@ -42,6 +43,8 @@ public class Spawner : MonoBehaviour
     //Wave controls
     public int totalWaves = 5;
     private int numWaves = 0;
+    public int wavenumber = 0;
+    public float wavecounter = 30.0f;
     //----------------------------------
     // End of Different Spawn states and ways of doing them
     //----------------------------------
@@ -85,8 +88,15 @@ public class Spawner : MonoBehaviour
                 // checks if the number of waves is bigger than the total waves
                 if (numWaves <= totalWaves)
                 {
+                    //Update the wave number & counter every time we have a new wave
+                    WaveText.WaveNumber = wavenumber;
+                    WaveText.WaveCounter = wavecounter;
                     // Increases the timer to allow the timed waves to work
                     timeTillWave += Time.deltaTime;
+
+                    //Update wave counter to find out time till next wave
+                    wavecounter -= Time.deltaTime;
+
                     if (waveSpawn)
                     {
                         //spawns an enemy
@@ -99,11 +109,20 @@ public class Spawner : MonoBehaviour
                         waveSpawn = true;
                         // sets the time back to zero
                         timeTillWave = 0.0f;
+
+                        //sets time till next wave back to 30
+                        wavecounter = 30.0f;
+
                         // increases the number of waves
                         numWaves++;
                         // A hack to get it to spawn the same number of enemies regardless of how many have been killed
                         numEnemy = 0;
-                        totalEnemy += 1;
+
+                        if (!increaseonce)
+                        {
+                            totalEnemy += 1;
+                        }
+                        wavenumber++;
                     }
                     if (numEnemy >= totalEnemy)
                     {
