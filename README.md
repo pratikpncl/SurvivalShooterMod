@@ -1,2 +1,2 @@
 # SurvivalShooterMod
-Creating Survival Shooter game as shown in the tutorial using GitHub. Will make some modifications later on.
+Created Survival Shooter game and modified it to be playable on an Android device.
